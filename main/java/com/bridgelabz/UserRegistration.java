@@ -3,10 +3,6 @@ package com.bridgelabz;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
-
-
-
-
     public static boolean firstName(String firstName) {
         boolean result = Pattern.compile("^[A-Z]{1}[a-z]{4}$").matcher(firstName).matches();
         return result;

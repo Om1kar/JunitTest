@@ -8,7 +8,9 @@ public class UserRegistrationTest {
         UserRegistration userRegistration = new UserRegistration();
         boolean result = userRegistration.firstName("Omkar");
         Assertions.assertTrue(result);
+
     }
+
     @Test
     public void lastName(){
         boolean result = UserRegistration.lastName("Dudhewar");
