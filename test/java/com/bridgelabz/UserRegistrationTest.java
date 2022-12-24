@@ -1,6 +1,8 @@
 package com.bridgelabz;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.runner.RunWith;
+import org.junit.runners.Parameterized;
 
 public class UserRegistrationTest {
     @Test
@@ -31,5 +33,7 @@ public class UserRegistrationTest {
         boolean result = UserRegistration.contactNumber("91 7020024533");
         Assertions.assertTrue(result);
     }
+
+
 }
 

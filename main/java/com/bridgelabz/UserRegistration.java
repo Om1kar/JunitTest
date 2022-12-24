@@ -27,10 +27,6 @@ public class UserRegistration {
         boolean result = Pattern.compile("^[A-Z]+[0-9]+[@#%&*!$^]{1}+[a-z]{5}$").matcher(password).matches();
         return result;
     }
-    public static boolean sampleEmail(String email){
-        boolean result = Pattern.compile("[a-z]{3,}[-.+]{0,1}[10]{0,3}[@]{1}[10]{0,3}[a-z]{0,5}[.]{0,1}[a-z]{0,3}[,.]{0,1}[a-z]{0,3}").matcher(email).matches();
-        return result;
-    }
 }
 
 
