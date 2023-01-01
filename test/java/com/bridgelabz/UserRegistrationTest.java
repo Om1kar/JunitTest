@@ -84,7 +84,7 @@ public class UserRegistrationTest {
     @Test
     public void passwordHappy() throws InvalidPasswordException {
         UserRegistration userRegistration = new UserRegistration();
-        boolean output = UserRegistration.validatePassword("hi5!There");
+        boolean output = UserRegistration.validatePassword("hi5@There");
         assertEquals(true, output);
     }
 
