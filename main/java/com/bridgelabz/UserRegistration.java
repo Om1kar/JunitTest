@@ -1,36 +1,104 @@
 package com.bridgelabz;
 
+import com.bridgelabz.exception.InvalidEMailException;
+import com.bridgelabz.exception.InvalidPasswordException;
+import com.bridgelabz.exception.InvalidPhoneNumberException;
+
+import javax.naming.InvalidNameException;
+import java.util.Scanner;
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class UserRegistration {
-    public static boolean firstName(String firstName) {
-        boolean result = Pattern.compile("^[A-Z]{1}[a-z]{4}$").matcher(firstName).matches();
-        return result;
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String firstName = "abc";
+        String lastName = "abc";
+        String email = "abc";
+        String phoneNumber = "abc";
+        String password = "abc";
+        try {
+            while (!validateName(firstName)) {
+                System.out.println("Enter First Name");
+                firstName = scanner.nextLine();
+                if (!validateName(firstName))
+                    System.out.println("Invalid Input");
+            }
+        } catch (InvalidNameException e) {
+            System.out.println(e);
+        }
+        try {
+            while (!validateName(lastName)) {
+                System.out.println("Enter Last Name");
+                lastName = scanner.nextLine();
+                if (!validateName(lastName))
+                    System.out.println("Invalid Input");
+            }
+        } catch (InvalidNameException e) {
+            System.out.println(e);
+        }
+        try {
+
+            while (!validateEMail(email)) {
+                System.out.println("Enter E-Mail");
+                email = scanner.nextLine();
+                if (!validateEMail(email))
+                    System.out.println("Invalid Input");
+            }
+        } catch (InvalidEMailException e) {
+            System.out.println(e);
+        }
+        try {
+            while (!validatePhoneNumber(phoneNumber)) {
+                System.out.println("Enter Phone Number");
+                phoneNumber = scanner.nextLine();
+                if (!validatePhoneNumber(phoneNumber))
+                    System.out.println("Invalid Input");
+            }
+        } catch (InvalidPhoneNumberException e) {
+            System.out.println(e);
+        }
+        try {
+            while (!validatePassword(password)) {
+                System.out.println("Enter Password");
+                password = scanner.nextLine();
+                if (!validatePassword(password))
+                    System.out.println("Invalid Input");
+            }
+        } catch (InvalidPasswordException e) {
+            System.out.println(e);
+        }
     }
 
-    public static boolean lastName(String lastName) {
-        boolean result = Pattern.compile("^[A-Z]{1}[a-z]{7}$").matcher(lastName).matches();
-        return result;
+    public static boolean validatePassword(String password) throws InvalidPasswordException {
+        Pattern pattern = Pattern.compile("^(?=.*[A-Z])(?=.*[0-9])(?=.*\\p{Punct}).{8,}$");
+        Matcher matcher = pattern.matcher(password);
+        if (!matcher.matches())
+            throw new InvalidPasswordException();
+        return matcher.matches();
     }
 
-    public static boolean contactNumber(String contactNumber) {
-        boolean result = Pattern.compile("^[0-9]{2} [0-9]{10}$").matcher(contactNumber).matches();
-        return result;
+    public static boolean validatePhoneNumber(String phoneNumber) throws InvalidPhoneNumberException {
+        Pattern pattern = Pattern.compile("^[0-9]{2} [0-9]{10}$");
+        Matcher matcher = pattern.matcher(phoneNumber);
+        if (!matcher.matches())
+            throw new InvalidPhoneNumberException();
+        return matcher.matches();
     }
 
-    public static boolean email(String email) {
-        boolean result = Pattern.compile("^[a-z]{3}.[a-z]{3}@[a-z]{2}.[a-z]{2}.[a-z]{2}$").matcher(email).matches();
-        return result;
+    public static boolean validateEMail(String eMail) throws InvalidEMailException {
+        Pattern pattern = Pattern.compile("^([a-z0-9]+(?:[+._-][a-z0-9]+)*)@([a-z0-9]+(?:[.-][a-z0-9]+)*\\.[a-z]{2,})$");
+        Matcher matcher = pattern.matcher(eMail);
+        if (!matcher.matches())
+            throw new InvalidEMailException();
+        return matcher.matches();
     }
 
-    public static boolean password(String password) {
-        boolean result = Pattern.compile("^[A-Z]+[0-9]+[@#%&*!$^]{1}+[a-z]{5}$").matcher(password).matches();
-        return result;
+    public static boolean validateName(String firstName) throws InvalidNameException {
+        Pattern pattern = Pattern.compile("^[A-Z][a-z]{2,}$");
+        Matcher matcher = pattern.matcher(firstName);
+        if (!matcher.matches())
+            throw new InvalidNameException();
+        return matcher.matches();
     }
 }
-
-
-
-
-
-
